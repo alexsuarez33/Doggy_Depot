@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		115DB8682CD7DC85008BA36D /* DescriptionVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115DB8672CD7DC85008BA36D /* DescriptionVIew.swift */; };
 		9A41441C2CD2ACA9008A11A9 /* Doggy_DepotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A41441B2CD2ACA9008A11A9 /* Doggy_DepotApp.swift */; };
 		9A41441E2CD2ACA9008A11A9 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A41441D2CD2ACA9008A11A9 /* SignInView.swift */; };
 		9A4144202CD2ACAB008A11A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A41441F2CD2ACAB008A11A9 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		115DB8672CD7DC85008BA36D /* DescriptionVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionVIew.swift; sourceTree = "<group>"; };
 		9A4144182CD2ACA9008A11A9 /* Doggy Depot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Doggy Depot.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A41441B2CD2ACA9008A11A9 /* Doggy_DepotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Doggy_DepotApp.swift; sourceTree = "<group>"; };
 		9A41441D2CD2ACA9008A11A9 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 				9A4144292CD2B3D3008A11A9 /* RegistrationView.swift */,
 				9A4144432CD360CC008A11A9 /* LandingPage.swift */,
 				9A4144452CD36955008A11A9 /* WishlistPageView.swift */,
+				115DB8672CD7DC85008BA36D /* DescriptionVIew.swift */,
 				9A41441F2CD2ACAB008A11A9 /* Assets.xcassets */,
 				9A4144212CD2ACAB008A11A9 /* Preview Content */,
 			);
@@ -155,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A4144462CD36955008A11A9 /* WishlistPageView.swift in Sources */,
+				115DB8682CD7DC85008BA36D /* DescriptionVIew.swift in Sources */,
 				9A4144442CD360CC008A11A9 /* LandingPage.swift in Sources */,
 				9A41442A2CD2B3D3008A11A9 /* RegistrationView.swift in Sources */,
 				9A41441E2CD2ACA9008A11A9 /* SignInView.swift in Sources */,
