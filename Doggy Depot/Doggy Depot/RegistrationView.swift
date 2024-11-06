@@ -18,113 +18,117 @@ struct RegistrationView: View {
     @State private var petBreed: String = ""
     @State private var petAge: String = ""
     @State private var petWeight: String = ""
-    
-    // State for handling errors
     @State private var errorMessage: String?
+    @State private var isRegistered = false // tracks successful registration
 
     var body: some View {
-        ZStack {
-            Color("BackgroundBeige")
-                .ignoresSafeArea()
-            
-            VStack(spacing: 15) {
-                // Logo Placeholder
-                Image("DoggyDepotLogo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 100, height: 100)
-                    .clipShape(Circle())
-                    .padding(.bottom, 15)
-
-                // Title
-                Text("Register")
-                    .font(.custom("Avenir-Heavy", size: 30))
-                    .foregroundColor(Color("WarmBrown"))
-
-                // Form Fields with Reduced Padding
-                Group {
-                    TextField("Email", text: $email)
-                        .font(.custom("SFProRounded-Regular", size: 16))
-                        .padding(.vertical, 10)
-                        .background(Color("TextFieldBackground"))
-                        .cornerRadius(8)
-                        .shadow(color: Color.gray.opacity(0.1), radius: 3, x: 0, y: 1)
-                        .keyboardType(.emailAddress)
-                        .autocapitalization(.none)
-                    
-                    TextField("Username", text: $username)
-                        .font(.custom("SFProRounded-Regular", size: 16))
-                        .padding(.vertical, 10)
-                        .background(Color("TextFieldBackground"))
-                        .cornerRadius(8)
-                        .shadow(color: Color.gray.opacity(0.1), radius: 3, x: 0, y: 1)
-                        .autocapitalization(.none)
-
-                    SecureField("Password", text: $password)
-                        .font(.custom("SFProRounded-Regular", size: 16))
-                        .padding(.vertical, 10)
-                        .background(Color("TextFieldBackground"))
-                        .cornerRadius(8)
-                        .shadow(color: Color.gray.opacity(0.1), radius: 3, x: 0, y: 1)
-                    
-                    SecureField("Confirm Password", text: $confirmPassword)
-                        .font(.custom("SFProRounded-Regular", size: 16))
-                        .padding(.vertical, 10)
-                        .background(Color("TextFieldBackground"))
-                        .cornerRadius(8)
-                        .shadow(color: Color.gray.opacity(0.1), radius: 3, x: 0, y: 1)
-                    
-                    TextField("Pet Name", text: $petName)
-                        .font(.custom("SFProRounded-Regular", size: 16))
-                        .padding(.vertical, 10)
-                        .background(Color("TextFieldBackground"))
-                        .cornerRadius(8)
-                        .shadow(color: Color.gray.opacity(0.1), radius: 3, x: 0, y: 1)
-                    
-                    TextField("Pet Breed", text: $petBreed)
-                        .font(.custom("SFProRounded-Regular", size: 16))
-                        .padding(.vertical, 10)
-                        .background(Color("TextFieldBackground"))
-                        .cornerRadius(8)
-                        .shadow(color: Color.gray.opacity(0.1), radius: 3, x: 0, y: 1)
-                    
-                    TextField("Pet Age", text: $petAge)
-                        .font(.custom("SFProRounded-Regular", size: 16))
-                        .padding(.vertical, 10)
-                        .background(Color("TextFieldBackground"))
-                        .cornerRadius(8)
-                        .shadow(color: Color.gray.opacity(0.1), radius: 3, x: 0, y: 1)
-                    
-                    TextField("Pet Weight (lbs)", text: $petWeight)
-                        .font(.custom("SFProRounded-Regular", size: 16))
-                        .padding(.vertical, 10)
-                        .background(Color("TextFieldBackground"))
-                        .cornerRadius(8)
-                        .shadow(color: Color.gray.opacity(0.1), radius: 3, x: 0, y: 1)
-                }
-
-                // Register Button with Adjusted Styling
-                Button(action: registerUser) {
-                    Text("Register")
-                        .font(.custom("SFProRounded-Semibold", size: 18))
-                        .padding(.vertical, 12)
-                        .frame(maxWidth: .infinity)
-                        .background(Color("WarmBrown"))
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                        .shadow(color: Color.gray.opacity(0.2), radius: 4, x: 0, y: 2)
-                }
+        NavigationStack {
+            ZStack {
+                Color("BackgroundBeige")
+                    .ignoresSafeArea()
                 
-                // Error message display
-                if let errorMessage = errorMessage {
-                    Text(errorMessage)
-                        .foregroundColor(.red)
-                        .font(.custom("SFProRounded-Regular", size: 14))
-                        .padding(.top, 5)
+                VStack(spacing: 15) {
+                    // Logo Placeholder
+                    Image("DoggyDepotLogo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
+                        .clipShape(Circle())
+                        .padding(.bottom, 15)
+
+                    // Title
+                    Text("Register")
+                        .font(.custom("Avenir-Heavy", size: 30))
+                        .foregroundColor(Color("WarmBrown"))
+
+                    // Form Fields with Reduced Padding
+                    Group {
+                        TextField("Email", text: $email)
+                            .font(.custom("SFProRounded-Regular", size: 16))
+                            .padding(.vertical, 10)
+                            .background(Color("TextFieldBackground"))
+                            .cornerRadius(8)
+                            .shadow(color: Color.gray.opacity(0.1), radius: 3, x: 0, y: 1)
+                            .keyboardType(.emailAddress)
+                            .autocapitalization(.none)
+                        
+                        TextField("Username", text: $username)
+                            .font(.custom("SFProRounded-Regular", size: 16))
+                            .padding(.vertical, 10)
+                            .background(Color("TextFieldBackground"))
+                            .cornerRadius(8)
+                            .shadow(color: Color.gray.opacity(0.1), radius: 3, x: 0, y: 1)
+                            .autocapitalization(.none)
+
+                        SecureField("Password", text: $password)
+                            .font(.custom("SFProRounded-Regular", size: 16))
+                            .padding(.vertical, 10)
+                            .background(Color("TextFieldBackground"))
+                            .cornerRadius(8)
+                            .shadow(color: Color.gray.opacity(0.1), radius: 3, x: 0, y: 1)
+                        
+                        SecureField("Confirm Password", text: $confirmPassword)
+                            .font(.custom("SFProRounded-Regular", size: 16))
+                            .padding(.vertical, 10)
+                            .background(Color("TextFieldBackground"))
+                            .cornerRadius(8)
+                            .shadow(color: Color.gray.opacity(0.1), radius: 3, x: 0, y: 1)
+                        
+                        TextField("Pet Name", text: $petName)
+                            .font(.custom("SFProRounded-Regular", size: 16))
+                            .padding(.vertical, 10)
+                            .background(Color("TextFieldBackground"))
+                            .cornerRadius(8)
+                            .shadow(color: Color.gray.opacity(0.1), radius: 3, x: 0, y: 1)
+                        
+                        TextField("Pet Breed", text: $petBreed)
+                            .font(.custom("SFProRounded-Regular", size: 16))
+                            .padding(.vertical, 10)
+                            .background(Color("TextFieldBackground"))
+                            .cornerRadius(8)
+                            .shadow(color: Color.gray.opacity(0.1), radius: 3, x: 0, y: 1)
+                        
+                        TextField("Pet Age", text: $petAge)
+                            .font(.custom("SFProRounded-Regular", size: 16))
+                            .padding(.vertical, 10)
+                            .background(Color("TextFieldBackground"))
+                            .cornerRadius(8)
+                            .shadow(color: Color.gray.opacity(0.1), radius: 3, x: 0, y: 1)
+                        
+                        TextField("Pet Weight (lbs)", text: $petWeight)
+                            .font(.custom("SFProRounded-Regular", size: 16))
+                            .padding(.vertical, 10)
+                            .background(Color("TextFieldBackground"))
+                            .cornerRadius(8)
+                            .shadow(color: Color.gray.opacity(0.1), radius: 3, x: 0, y: 1)
+                    }
+
+                    // Register Button with Adjusted Styling
+                    Button(action: registerUser) {
+                        Text("Register")
+                            .font(.custom("SFProRounded-Semibold", size: 18))
+                            .padding(.vertical, 12)
+                            .frame(maxWidth: .infinity)
+                            .background(Color("WarmBrown"))
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                            .shadow(color: Color.gray.opacity(0.2), radius: 4, x: 0, y: 2)
+                    }
+                    
+                    // Error message display
+                    if let errorMessage = errorMessage {
+                        Text(errorMessage)
+                            .foregroundColor(.red)
+                            .font(.custom("SFProRounded-Regular", size: 14))
+                            .padding(.top, 5)
+                    }
+                }
+                .padding(.horizontal, 24)
+                .padding(.top, 20)
+                .navigationDestination(isPresented: $isRegistered) {
+                    LandingPage()
                 }
             }
-            .padding(.horizontal, 24)
-            .padding(.top, 20)
         }
     }
     
@@ -174,16 +178,14 @@ struct RegistrationView: View {
             switch result {
             case .success(let user):
                 print("User registered successfully: \(user)")
+                isRegistered = true
                 errorMessage = nil // Clear any existing error message
-                // Proceed to the next screen or update the UI as needed
             case .failure(let error):
                 print("Registration failed: \(error.localizedDescription)")
                 errorMessage = "Registration failed: \(error.localizedDescription)"
             }
         }
     }
-    
-    
 }
 
 struct RegistrationView_Previews: PreviewProvider {

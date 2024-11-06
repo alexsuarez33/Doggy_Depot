@@ -13,75 +13,81 @@ struct SignInView: View {
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var errorMessage: String? // To show error messages if sign-in fails
+    @State private var isSignedIn = false // tracks successful sign-in
     
     var body: some View {
-        ZStack {
-            // Full screen background color
-            Color("BackgroundBeige")
-                .ignoresSafeArea()
-            
-            VStack(spacing: 24) {
-                // Logo at the top
-                Image("DoggyDepotLogo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 120, height: 120)
-                    .clipShape(Circle())
-                    .padding(.bottom, 30)
+        NavigationStack {
+            ZStack {
+                // Full screen background color
+                Color("BackgroundBeige")
+                    .ignoresSafeArea()
+                
+                VStack(spacing: 24) {
+                    // Logo at the top
+                    Image("DoggyDepotLogo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 120, height: 120)
+                        .clipShape(Circle())
+                        .padding(.bottom, 30)
 
-                // App Name
-                Text("Doggy Depot")
-                    .font(.custom("Avenir-Heavy", size: 34))
-                    .foregroundColor(Color("WarmBrown"))
-                
-                // Username Text Field
-                TextField("Username", text: $username)
-                    .font(.custom("SFProRounded-Regular", size: 18))
-                    .padding()
-                    .background(Color("TextFieldBackground"))
-                    .cornerRadius(10)
-                    .shadow(color: Color.gray.opacity(0.2), radius: 5, x: 0, y: 2)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(true)
-                
-                // Password Text Field
-                SecureField("Password", text: $password)
-                    .font(.custom("SFProRounded-Regular", size: 18))
-                    .padding()
-                    .background(Color("TextFieldBackground"))
-                    .cornerRadius(10)
-                    .shadow(color: Color.gray.opacity(0.2), radius: 5, x: 0, y: 2)
-                
-                // Sign In Button
-                Button(action: {
-                    signInUser()
-                }) {
-                    Text("Sign In")
-                        .font(.custom("SFProRounded-Semibold", size: 18))
+                    // App Name
+                    Text("Doggy Depot")
+                        .font(.custom("Avenir-Heavy", size: 34))
+                        .foregroundColor(Color("WarmBrown"))
+                    
+                    // Username Text Field
+                    TextField("Username", text: $username)
+                        .font(.custom("SFProRounded-Regular", size: 18))
                         .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color("WarmBrown"))
-                        .foregroundColor(.white)
+                        .background(Color("TextFieldBackground"))
                         .cornerRadius(10)
-                        .shadow(color: Color.gray.opacity(0.3), radius: 5, x: 0, y: 2)
+                        .shadow(color: Color.gray.opacity(0.2), radius: 5, x: 0, y: 2)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
+                    
+                    // Password Text Field
+                    SecureField("Password", text: $password)
+                        .font(.custom("SFProRounded-Regular", size: 18))
+                        .padding()
+                        .background(Color("TextFieldBackground"))
+                        .cornerRadius(10)
+                        .shadow(color: Color.gray.opacity(0.2), radius: 5, x: 0, y: 2)
+                    
+                    // Sign In Button
+                    Button(action: {
+                        signInUser()
+                    }) {
+                        Text("Sign In")
+                            .font(.custom("SFProRounded-Semibold", size: 18))
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color("WarmBrown"))
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                            .shadow(color: Color.gray.opacity(0.3), radius: 5, x: 0, y: 2)
+                    }
+                    
+                    // Error message display
+                    if let errorMessage = errorMessage {
+                        Text(errorMessage)
+                            .foregroundColor(.red)
+                            .font(.custom("SFProRounded-Regular", size: 14))
+                            .padding(.top, 5)
+                    }
+                    
+                    // Link to Registration Screen
+                    NavigationLink("Don't have an account? Register", destination: RegistrationView())
+                        .font(.custom("SFProRounded-Regular", size: 16))
+                        .foregroundColor(Color("WarmBrown"))
+                        .padding(.top, 10)
                 }
-                
-                // Error message display
-                if let errorMessage = errorMessage {
-                    Text(errorMessage)
-                        .foregroundColor(.red)
-                        .font(.custom("SFProRounded-Regular", size: 14))
-                        .padding(.top, 5)
+                .padding(.horizontal, 30)
+                .padding(.top, 40)
+                .navigationDestination(isPresented: $isSignedIn) {
+                    LandingPage() 
                 }
-                
-                // Link to Registration Screen
-                NavigationLink("Don't have an account? Register", destination: RegistrationView())
-                    .font(.custom("SFProRounded-Regular", size: 16))
-                    .foregroundColor(Color("WarmBrown"))
-                    .padding(.top, 10)
             }
-            .padding(.horizontal, 30)
-            .padding(.top, 40)
         }
     }
     
@@ -98,6 +104,7 @@ struct SignInView: View {
             switch result {
             case .success(let user):
                 print("User signed in successfully: \(user)")
+                isSignedIn = true
                 errorMessage = nil // Clear any existing error message
                 // Proceed to the next screen or update the UI as needed
             case .failure(let error):
