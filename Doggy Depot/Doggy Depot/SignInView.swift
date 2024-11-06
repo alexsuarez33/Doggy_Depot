@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import ParseSwift
 
 struct SignInView: View {
     // State properties for the text fields
     @State private var username: String = ""
     @State private var password: String = ""
+    @State private var errorMessage: String? // To show error messages if sign-in fails
     
     var body: some View {
         ZStack {
@@ -52,7 +54,7 @@ struct SignInView: View {
                 
                 // Sign In Button
                 Button(action: {
-                    // Handle sign-in logic here
+                    signInUser()
                 }) {
                     Text("Sign In")
                         .font(.custom("SFProRounded-Semibold", size: 18))
@@ -64,7 +66,15 @@ struct SignInView: View {
                         .shadow(color: Color.gray.opacity(0.3), radius: 5, x: 0, y: 2)
                 }
                 
-                // Link to Registration Screen with matching color scheme
+                // Error message display
+                if let errorMessage = errorMessage {
+                    Text(errorMessage)
+                        .foregroundColor(.red)
+                        .font(.custom("SFProRounded-Regular", size: 14))
+                        .padding(.top, 5)
+                }
+                
+                // Link to Registration Screen
                 NavigationLink("Don't have an account? Register", destination: RegistrationView())
                     .font(.custom("SFProRounded-Regular", size: 16))
                     .foregroundColor(Color("WarmBrown"))
@@ -72,6 +82,28 @@ struct SignInView: View {
             }
             .padding(.horizontal, 30)
             .padding(.top, 40)
+        }
+    }
+    
+    // Function to handle user sign-in
+    private func signInUser() {
+        // Basic check for empty fields
+        guard !username.isEmpty, !password.isEmpty else {
+            errorMessage = "Please enter both username and password."
+            return
+        }
+        
+        // Sign-in with Parse
+        User.login(username: username, password: password) { result in
+            switch result {
+            case .success(let user):
+                print("User signed in successfully: \(user)")
+                errorMessage = nil // Clear any existing error message
+                // Proceed to the next screen or update the UI as needed
+            case .failure(let error):
+                print("Sign-in failed: \(error.localizedDescription)")
+                errorMessage = "Sign-in failed: \(error.localizedDescription)"
+            }
         }
     }
 }

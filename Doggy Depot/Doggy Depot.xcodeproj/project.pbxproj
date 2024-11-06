@@ -16,6 +16,7 @@
 		9A41443D2CD3532F008A11A9 /* ParseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9A41443C2CD3532F008A11A9 /* ParseSwift */; };
 		9A4144442CD360CC008A11A9 /* LandingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4144432CD360CC008A11A9 /* LandingPage.swift */; };
 		9A4144462CD36955008A11A9 /* WishlistPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4144452CD36955008A11A9 /* WishlistPageView.swift */; };
+		9A7AD9542CDAF85B002F5B95 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7AD9532CDAF85B002F5B95 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		9A4144292CD2B3D3008A11A9 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		9A4144432CD360CC008A11A9 /* LandingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPage.swift; sourceTree = "<group>"; };
 		9A4144452CD36955008A11A9 /* WishlistPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishlistPageView.swift; sourceTree = "<group>"; };
+		9A7AD9532CDAF85B002F5B95 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				9A41441B2CD2ACA9008A11A9 /* Doggy_DepotApp.swift */,
 				9A41441D2CD2ACA9008A11A9 /* SignInView.swift */,
 				9A4144292CD2B3D3008A11A9 /* RegistrationView.swift */,
+				9A7AD9532CDAF85B002F5B95 /* User.swift */,
 				9A4144432CD360CC008A11A9 /* LandingPage.swift */,
 				9A4144452CD36955008A11A9 /* WishlistPageView.swift */,
 				115DB8672CD7DC85008BA36D /* DescriptionVIew.swift */,
@@ -158,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A4144462CD36955008A11A9 /* WishlistPageView.swift in Sources */,
+				9A7AD9542CDAF85B002F5B95 /* User.swift in Sources */,
 				115DB8682CD7DC85008BA36D /* DescriptionVIew.swift in Sources */,
 				9A4144442CD360CC008A11A9 /* LandingPage.swift in Sources */,
 				9A41442A2CD2B3D3008A11A9 /* RegistrationView.swift in Sources */,

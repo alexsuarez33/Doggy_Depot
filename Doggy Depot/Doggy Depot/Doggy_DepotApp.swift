@@ -6,10 +6,16 @@
 //
 
 import SwiftUI
-// import Parse
+import ParseSwift
 
 @main
 struct DoggyDepotApp: App {
+    init() {
+        ParseSwift.initialize(applicationId: "nVvIUzm0yxcJdz4PZFhMHGTFkgSM4tkimvQzNAbd",
+                              clientKey: "gCEq4vjVcGhkxs0Q61VQBNRij8VDj2EivSB3pwk5",
+                              serverURL: URL(string: "https://parseapi.back4app.com")!)
+    }
+    
     var body: some Scene {
         WindowGroup {
             NavigationView {
