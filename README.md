@@ -40,13 +40,18 @@ Doggy Depot is an interactive app designed for dog owners, providing an intuitiv
 ### Screen Archetypes
 - **Login Screen**: User authentication.
 - **Home Screen**: Browse product categories.
+- **Wish List Screen**: save favourite products.
 - **Product Details Screen**: View product information; add to cart/wishlist.
 - **Shopping Cart Screen**: Review items and proceed to checkout.
 
 ---
 
 ## Wireframes
-![Wireframes](link-to-your-wireframes-image) <!-- Replace with actual link to your wireframe images if available -->
+<img width="645" alt="Screenshot 2024-11-08 at 8 02 39 PM" src="https://github.com/user-attachments/assets/c626894e-56d0-44a0-9c30-8cd13f1c8221">
+<img width="582" alt="Screenshot 2024-11-08 at 8 03 17 PM" src="https://github.com/user-attachments/assets/1a401854-a34c-40a5-a412-04ed5a937fd1">
+
+
+
 
 ---
 
@@ -94,23 +99,82 @@ Doggy Depot is an interactive app designed for dog owners, providing an intuitiv
 ### List of Network Requests by Screen
 
 - **Login Screen**
-  - `[POST] /login` - User login.
-  - `[POST] /register` - User registration.
+  - `[POST] /login` - Authenticate user and initiate a session.
+  - `[POST] /register` - Register a new user account.
 
 - **Home Screen**
-  - `[GET] /products/categories` - Fetch product categories.
-  - `[GET] /products/recommendations` - Fetch recommended products.
+  - `[GET] /products/categories` - Retrieve product categories.
+  - `[GET] /products/recommendations` - Retrieve recommended products based on pet profile and preferences.
 
 - **Product Details Screen**
-  - `[GET] /products/{productId}` - Get product details.
-  - `[POST] /cart/add` - Add to cart.
-  - `[POST] /wishlist/add` - Add to wishlist.
+  - `[GET] /products/{productId}` - Retrieve details for a specific product.
+  - `[POST] /cart/add` - Add selected product to the user's shopping cart.
+  - `[POST] /wishlist/add` - Add product to the user's wishlist.
 
-- **Shopping Cart Screen**
-  - `[GET] /cart` - View cart items.
-  - `[POST] /checkout` - Proceed to checkout.
+- **Wishlist Screen**
+  - `[GET] /wishlist` - Retrieve all items in the user's wishlist.
+  - `[DELETE] /wishlist/remove/{productId}` - Remove a product from the wishlist.
+
+- **Profile Screen**
+  - `[GET] /user/{userId}` - Retrieve user profile details, including pet profiles and preferences.
+  - `[POST] /user/{userId}/update` - Update user profile, such as adding a shipping address or updating pet information.
+  - `[GET] /pets` - Retrieve list of pets associated with the user.
+  - `[POST] /pets/add` - Add a new pet profile with details.
+  - `[DELETE] /pets/remove/{petId}` - Remove a pet profile.
 
 ---
 
+## Parse Network Request Snippets
 
+Here are Parse request snippets for common actions:
+
+**User Login:**
+```swift
+PFUser.logInWithUsername(inBackground: username, password: password) { (user, error) in
+    if let user = user {
+        // Login successful
+    } else if let error = error {
+        print("Error: \(error.localizedDescription)")
+    }
+}
+---
+## add products to cart
+
+let cartItem = PFObject(className: "Cart")
+cartItem["userId"] = currentUserId
+cartItem["productId"] = productId
+cartItem.saveInBackground { (success, error) in
+    if success {
+        print("Product added to cart")
+    } else if let error = error {
+        print("Error: \(error.localizedDescription)")
+    }
+}
+## Fetch Wishlist
+
+let query = PFQuery(className: "Wishlist")
+query.whereKey("userId", equalTo: currentUserId)
+query.findObjectsInBackground { (objects, error) in
+    if let wishlistItems = objects {
+        // Process wishlist items
+    } else if let error = error {
+        print("Error: \(error.localizedDescription)")
+    }
+}
+
+## Update Pet Profile
+
+let petQuery = PFQuery(className: "Pet")
+petQuery.getObjectInBackground(withId: petId) { (pet, error) in
+    if let pet = pet {
+        pet["healthIssues"] = newHealthIssues
+        pet.saveInBackground { (success, error) in
+            if success {
+                print("Pet profile updated")
+            } else if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+}
 https://docs.google.com/document/d/19D33ABBR6yi5WAvkgx1JlFvmGY4uDTgIiH_vPdIV8Mg/edit?usp=sharing
