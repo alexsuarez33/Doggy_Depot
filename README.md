@@ -106,6 +106,12 @@ Doggy Depot is an interactive app designed for dog owners, providing an intuitiv
   - `[GET] /products/categories` - Retrieve product categories.
   - `[GET] /products/recommendations` - Retrieve recommended products based on pet profile and preferences.
 
+## Progress - Antonella Quiroga
+
+<div style="width: 200px; border: 1px solid #ddd; padding: 5px; border-radius: 5px; overflow: hidden;">
+    <img src="https://github.com/user-attachments/assets/96df9d54-f5be-41cb-8cfc-59f972fab5ea" alt="Progress Image" width="100%" style="display: block;"/>
+</div>
+
 - **Product Details Screen**
   - `[GET] /products/{productId}` - Retrieve details for a specific product.
   - `[POST] /cart/add` - Add selected product to the user's shopping cart.
@@ -114,6 +120,8 @@ Doggy Depot is an interactive app designed for dog owners, providing an intuitiv
 - **Wishlist Screen**
   - `[GET] /wishlist` - Retrieve all items in the user's wishlist.
   - `[DELETE] /wishlist/remove/{productId}` - Remove a product from the wishlist.
+ ## Progress - Antonella Quiroga
+ <img width="458" alt="Screenshot 2024-11-05 at 8 17 18 PM" src="https://github.com/user-attachments/assets/a1e665ad-9f72-42dc-ba3d-4ec413ea930b"> alt="Progress Image" width="300"/>
 
 - **Profile Screen**
   - `[GET] /user/{userId}` - Retrieve user profile details, including pet profiles and preferences.
