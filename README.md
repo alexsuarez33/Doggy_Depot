@@ -28,21 +28,21 @@ Doggy Depot is an interactive app designed for dog owners, providing an intuitiv
 
 ### User Stories
 **Required Must-have Stories**
-- Users can create an account and log in.
-- Users can create/manage pet profiles with details (breed, age, size, etc.).
-- Users can browse products by category.
-- Users can add products to the shopping cart and wishlist.
+[] Users can create an account and log in.
+[] Users can create/manage pet profiles with details (breed, age, size, etc.).
+[] Users can browse products by category.
+[] Users can add products to the shopping cart and wishlist.
 
 **Optional Nice-to-have Stories**
-- Recurring product subscriptions (e.g., for food).
-- Multiple payment options and order tracking.
+[]Recurring product subscriptions (e.g., for food).
+[] Multiple payment options and order tracking.
 
 ### Screen Archetypes
-- **Login Screen**: User authentication.
-- **Home Screen**: Browse product categories.
-- **Wish List Screen**: save favourite products.
-- **Product Details Screen**: View product information; add to cart/wishlist.
-- **Shopping Cart Screen**: Review items and proceed to checkout.
+[] **Login Screen**: User authentication.
+[] **Home Screen**: Browse product categories.
+[] **Wish List Screen**: save favourite products.
+[] **Product Details Screen**: View product information; add to cart/wishlist.
+[] **Shopping Cart Screen**: Review items and proceed to checkout.
 
 ---
 
