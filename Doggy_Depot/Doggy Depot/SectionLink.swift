@@ -13,9 +13,10 @@ struct SectionLink: View {
         NavigationLink(destination: CategoryView(category: category)) {
             Text(title)
                 .font(.headline)
+                .foregroundStyle(.warmBrown)
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .background(Color.gray.opacity(0.1))
+                .background(Color.textFieldBackground)
                 .cornerRadius(8)
         }
     }

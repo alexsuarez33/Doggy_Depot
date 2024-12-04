@@ -19,7 +19,7 @@ struct LandingPage: View {
                 
                 // Header
                 HeaderView()
-                    .padding(.top, 20)
+                    .padding(.top, 25)
                 // Sections without preloaded data
                 VStack(alignment: .leading, spacing: 16) {
                     SectionLink(title: "Food", category: "Food")
@@ -35,7 +35,7 @@ struct LandingPage: View {
             
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
-            .background(Color.white)
+            .background(Color.backgroundBeige)
             .edgesIgnoringSafeArea(.all)
         }
     }
