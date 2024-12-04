@@ -19,7 +19,7 @@ struct LandingPage: View {
                 
                 // Header
                 HeaderView()
-                    .padding(.top, 60)
+                    .padding(.top, 20)
                 // Sections without preloaded data
                 VStack(alignment: .leading, spacing: 16) {
                     SectionLink(title: "Food", category: "Food")

@@ -15,11 +15,12 @@ struct HeaderView: View {
             Image("DoggyDepotLogo")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 40, height: 40)
+                .frame(width: 45, height: 45)
+                .clipShape(Circle())
             Text("Doggy Depot")
                 .font(.title)
                 .fontWeight(.bold)
-                .foregroundColor(.white)
+                .foregroundColor(.warmBrown)
             
             Spacer()
             
@@ -27,7 +28,7 @@ struct HeaderView: View {
             NavigationLink(destination: WishlistPageView()) {
                 Image(systemName: "heart.fill")
                     .font(.title2)
-                    .foregroundColor(.white)
+                    .foregroundColor(.red)
             }
             .padding(.trailing, 10)
             
@@ -36,7 +37,7 @@ struct HeaderView: View {
                 NavigationLink(destination: ShoppingCartView()) {
                     Image(systemName: "cart.fill")
                         .font(.title2)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                 }
                 
                 // Badge for item count
@@ -53,7 +54,7 @@ struct HeaderView: View {
         .padding(.top, 40)
         .padding(.vertical, 10)
         .padding(.horizontal)
-        .background(Color.black)
+        .background(Color.backgroundBeige)
         .onAppear(perform: fetchCartItemCount) // Fetch cart item count when header appears
     }
     
