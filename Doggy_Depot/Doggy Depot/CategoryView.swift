@@ -34,10 +34,12 @@ struct CategoryView: View {
             if isLoading {
                 ProgressView("Loading \(category) Items...")
                     .padding()
+                    .foregroundColor(.warmBrown)
             } else {
                 if items.isEmpty {
                     Text("No items available for \(category)")
                         .padding()
+                        .foregroundColor(.warmBrown)
                 } else {
                     List(items, id: \.objectId) { item in
                         HStack {
@@ -72,9 +74,10 @@ struct CategoryView: View {
                             VStack(alignment: .leading) {
                                 Text(item.name ?? "Unknown")
                                     .font(.headline)
+                                    .foregroundStyle(.warmBrown)
                                 Text("$\(item.price ?? 0.0, specifier: "%.2f")")
                                     .font(.subheadline)
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(.black)
                             }
 
                             Spacer()
@@ -89,15 +92,18 @@ struct CategoryView: View {
                             ) {
                                 Text("View")
                                     .font(.body)
-                                    .foregroundColor(.blue)
+                                    .foregroundColor(.gray)
                             }
                         }
                         .padding(.vertical, 8)
+                        .listRowBackground(Color.textFieldBackground)
                     }
                     .listStyle(PlainListStyle())
+                    
                 }
             }
         }
+        .background(Color.backgroundBeige.ignoresSafeArea())
         .onAppear(perform: loadItems)
         .navigationTitle("\(category) Items")
         .navigationBarTitleDisplayMode(.inline)
